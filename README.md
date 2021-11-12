@@ -1,5 +1,5 @@
 ## Air Quality Project
-The program will provide different Air Quality information base on a zip code.
+The program will provide different Air Quality information base on a zip code. You can get your key API from there [TOKEN](https://aqicn.org/data-platform/token/)
 
 #### The informations are:
 * The location of the monitoring station
