@@ -22,3 +22,12 @@ or
 ```
 $ pip3 install geopy
 ```
+## Authors
+   * [Christopher Dedman-Rollet](https://twitter.com/DedmanRollet)
+
+## Version History
+* 1.0
+  * Final Release
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](#LICENSE) file for details
