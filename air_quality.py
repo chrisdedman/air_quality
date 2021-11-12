@@ -10,34 +10,43 @@ import json
 import os
 from geopy.geocoders import Nominatim
 
+def data():
+    global current_time
+    global current_pm25
+    global current_city
+    global aqi
+    global pollutant
+    global ozone
+    global pm_ten
+    global pm_twofive
+    global uvi
+    try:
+        print("Welcome to AirQualityPy!")
+        geolocator = Nominatim(user_agent="MyGeoPy")
+        keyAPI = "/?token=dcc4b7d1eddc2abadd1f4bb8f9670815df7b0f20"
+        url = "https://api.waqi.info/feed/geo:"
+        # the user enter a zip code
+        addr = int(input("Please, provide your zip code: "))
+        # geopy translate the zip code into cardinal point
+        postal = geolocator.geocode({'postalcode': addr})
+        location = f"{postal.latitude};{postal.longitude}"
+        # complete url for the API to proccess data
+        complete_url = f"{url}{location}{keyAPI}"
+        response = requests.get(complete_url)  # the API get the data from the url
+        x = response.json()  # the data are translate and store into the x variable in json format
 
-try:
-    print("Welcome to AirQualityPy!")
-    geolocator = Nominatim(user_agent="MyGeoPy")
-    keyAPI = "/?token=dcc4b7d1eddc2abadd1f4bb8f9670815df7b0f20"
-    url = "https://api.waqi.info/feed/geo:"
-    # the user enter a zip code
-    addr = int(input("Please, provide your zip code: "))
-    # geopy translate the zip code into cardinal point
-    postal = geolocator.geocode({'postalcode': addr})
-    location = f"{postal.latitude};{postal.longitude}"
-    # complete url for the API to proccess data
-    complete_url = f"{url}{location}{keyAPI}"
-    response = requests.get(complete_url)  # the API get the data from the url
-    x = response.json()  # the data are translate and store into the x variable in json format
-
-    y = x['data']  # extract data and store it into a variable
-    aqi = y['aqi']  # current Air Quality Index
-    current_pm25 = y['iaqi']['pm25']['v']  # current PM2.5 index
-    pollutant = y['dominentpol']  # current dominent pollutant
-    current_city = y['city']['name']  # name of the current city
-    current_time = y['time']['s'][:10]  # current_time[:9]
-    ozone = y['forecast']['daily']['o3']  # prediction o3
-    pm_ten = y['forecast']['daily']['pm10']  # prediction PM10
-    pm_twofive = y['forecast']['daily']['pm25']  # prediction PM2.5
-    uvi = y['forecast']['daily']['uvi']  # prediction UV index
-except ValueError:
-    print('Invalid Input!')
+        y = x['data']  # extract data and store it into a variable
+        aqi = y['aqi']  # current Air Quality Index
+        current_pm25 = y['iaqi']['pm25']['v']  # current PM2.5 index
+        pollutant = y['dominentpol']  # current dominent pollutant
+        current_city = y['city']['name']  # name of the current city
+        current_time = y['time']['s'][:10]  # current_time[:9]
+        ozone = y['forecast']['daily']['o3']  # prediction o3
+        pm_ten = y['forecast']['daily']['pm10']  # prediction PM10
+        pm_twofive = y['forecast']['daily']['pm25']  # prediction PM2.5
+        uvi = y['forecast']['daily']['uvi']  # prediction UV index
+    except ValueError:
+        print('Invalid Input!')
 
 # Category with AQI index level scale:
 def index_level():
@@ -85,7 +94,7 @@ def air():
         elif request == 6:
             exit(0)
         elif request > 6 or request < 1:
-            return request
+            return air() # <----------------------- need to work on this one, it should return request but I have a bug when I do so.
 
     except ValueError:
         air()
@@ -197,4 +206,4 @@ def uv():
 
 if __name__ == "__main__":
     while 1:
-        air()
+        data()
