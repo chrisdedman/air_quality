@@ -18,3 +18,7 @@ To run this project, install it locally using pip:
 ```
 $ pip install geopy
 ```
+or
+```
+$ pip3 install geopy
+```
