@@ -27,7 +27,7 @@ $ pip3 install geopy
 
 ## Version History
 * 1.0
-  * Final Release
+  * New Release
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details
