@@ -11,15 +11,6 @@ import os
 from geopy.geocoders import Nominatim
 
 def data():
-    global current_time
-    global current_pm25
-    global current_city
-    global aqi
-    global pollutant
-    global ozone
-    global pm_ten
-    global pm_twofive
-    global uvi
     try:
         print("Welcome to AirQualityPy!")
         geolocator = Nominatim(user_agent="MyGeoPy")
@@ -45,11 +36,12 @@ def data():
         pm_ten = y['forecast']['daily']['pm10']  # prediction PM10
         pm_twofive = y['forecast']['daily']['pm25']  # prediction PM2.5
         uvi = y['forecast']['daily']['uvi']  # prediction UV index
+        return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
     except ValueError:
         print('Invalid Input!')
 
 # Category with AQI index level scale:
-def index_level():
+def index_level(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city):
     os.system('cls||clear')
     print("""
     \t\t\t ________________________
@@ -64,10 +56,10 @@ def index_level():
     """)
     print("Press enter to go back to Air Quality Information!")
     input()
-    air()
+    return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
 
 # user menu to access different air quality informations
-def air():
+def air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city):
     os.system("cls||clear")
     print("""
     \t\t\t ________________________
@@ -82,25 +74,25 @@ def air():
             input("\nWhich information do you want to access? [Index #]\n>>"))
 
         if request == 1:
-            pmten()
+            pmten(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
         elif request == 2:
-            pmtwo()
+            pmtwo(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
         elif request == 3:
-            oz()
+            oz(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
         elif request == 4:
-            uv()
+            uv(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
         elif request == 5:
-            index_level()
+            index_level(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
         elif request == 6:
             exit(0)
         elif request > 6 or request < 1:
-            return air() # <----------------------- need to work on this one, it should return request but I have a bug when I do so.
+            return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city) # <----------------------- need to work on this one, it should return request but I have a bug when I do so.
 
     except ValueError:
-        air()
+        return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
 
 # Forecast informations about Ozone with 2 days old and 4 day predictions
-def oz():
+def oz(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city):
     os.system("cls||clear")
     sum = 0
     print("\nForecast:\n")
@@ -123,10 +115,10 @@ def oz():
         sum += 1
     print("Press enter to access other Air Quality Information!")
     input()
-    air()
+    return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
 
 # Forecast informations about PM10 with 2 days old and 4 day predictions
-def pmten():
+def pmten(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city):
     os.system("cls||clear")
     sum = 0
     print("Forecast:\n")
@@ -149,10 +141,10 @@ def pmten():
         sum += 1
     print("Press enter to access other Air Quality Information!")
     input()
-    air()
+    return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
 
 # Forecast informations about PM2.5 with 2 days old and 4 day predictions
-def pmtwo():
+def pmtwo(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city):
     os.system("cls||clear")
     sum = 0
     print("Forecast:\n")
@@ -175,10 +167,10 @@ def pmtwo():
         sum += 1
     print("Press enter to access other Air Quality Information!")
     input()
-    air()
+    return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
 
 # Forecast informations about UV Index with 2 days old and 4 day predictions
-def uv():
+def uv(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city):
     os.system("cls||clear")
     sum = 0
     print("Forecast:\n")
@@ -201,9 +193,8 @@ def uv():
         sum += 1
     print("Press enter to access other Air Quality Information!")
     input()
-    air()
+    return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
 
 
 if __name__ == "__main__":
-    while 1:
-        data()
+    data()
