@@ -1,5 +1,4 @@
-# The program will provide different Air Quality information
-# base on a zip code. The information are:
+# The program will provide different Air Quality information base on a zip code. The information are:
 # The location of the monitoring station
 # The dominant pollutant
 # The current AQI(air quality index)
@@ -10,9 +9,9 @@ import json
 import os
 from geopy.geocoders import Nominatim
 
+# Extract weather informations from World Air Quality Index website, and store the datas into variables in json format
 def data():
     try:
-        print("Welcome to AirQualityPy!")
         geolocator = Nominatim(user_agent="MyGeoPy")
         keyAPI = "KEY_API_HERE"
         url = "https://api.waqi.info/feed/geo:"
@@ -198,4 +197,5 @@ def uv(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm2
 
 
 if __name__ == "__main__":
+    print("Welcome to AirQualityPy!")
     data()
