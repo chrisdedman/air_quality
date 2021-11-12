@@ -23,7 +23,7 @@ def data():
     try:
         print("Welcome to AirQualityPy!")
         geolocator = Nominatim(user_agent="MyGeoPy")
-        keyAPI = "/?token=dcc4b7d1eddc2abadd1f4bb8f9670815df7b0f20"
+        keyAPI = "KEY_API_HERE"
         url = "https://api.waqi.info/feed/geo:"
         # the user enter a zip code
         addr = int(input("Please, provide your zip code: "))
