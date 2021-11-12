@@ -22,7 +22,7 @@ or
 ```
 $ pip3 install geopy
 ```
-## Authors
+## Author
    * [Christopher Dedman-Rollet](https://twitter.com/DedmanRollet)
 
 ## Version History
