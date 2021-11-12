@@ -39,6 +39,7 @@ def data():
         return air(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city)
     except ValueError:
         print('Invalid Input!')
+        return data()
 
 # Category with AQI index level scale:
 def index_level(pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city):
