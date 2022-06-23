@@ -16,16 +16,15 @@ import requests                             # <-- Request library to get the API
 import json                                 # <-- Json library to extract data from json file
 import time                                 # <-- Controle the time sleep in the program
 import sys                                  # <-- Library use to exit the program when the user is done
-import os                                   # <-- Library use to clear the terminal when movie to different categories
+import os                                   # <-- Library use to clear the terminal when move to different categories
+
 
 # Extract weather informations from World Air Quality Index website, and store the datas into variables in json format
 def data():
-    
     # Global variable to be export the variable into different functions
     global pm_ten, pm_twofive, ozone, uvi, current_time, pollutant, aqi, current_pm25, current_city
     
     while True:
-        
         geolocator = Nominatim(user_agent="MyGeoPy")
         keyAPI = "ENTER YOUR OWN TOKEM HERE"     # <-- TOKEN to make the API work from the website on the next line (waqi.info)
         url = "https://api.waqi.info/feed/geo:"
@@ -59,7 +58,6 @@ def data():
                 # break the while loop once the data are gathered, and move to the next function
                 break
 
-
             # If zip code no found, print an error and start over.
             except (AttributeError, KeyError):
                 print("Sorry, based on your input, we were unable to collect any information from our database ... \nPlease enter another zip code! \n")
@@ -70,17 +68,13 @@ def data():
             print('Invalid Input!\n')
             continue
 
-
-
 # user menu to access different air quality informations
 def air():
-    
     os.system("cls||clear")
     print("""
     \t\t\t ________________________
     \t\t\t|Welcome to AirQualityPy!|
     """)
-
     # Gathered the current time
     now = datetime.now()
     time_now = now.strftime("%H:%M")
@@ -137,11 +131,8 @@ def air():
             print("Index number not available! Try another one.")
             time.sleep(2)
 
-
-
 # Category that explain the informations about the air quality
 def index_info():
-
     os.system("cls||clear")
     print("Learn the meaning of ozone, particulate matter (PM) 10 and 2.5, and ultraviolet (UV) index information here.")
 
@@ -167,8 +158,6 @@ def index_info():
     print("Press enter to return to air quality information!")
     input()
     
-
-
 # Category with AQI, PMs and UV index level scale:
 def index_level():
     os.system('cls||clear')
@@ -223,11 +212,8 @@ def index_level():
     print("Press enter to return to air quality information!")
     input()
 
-        
-
 # Forecast informations about Ozone with 2 days old and 4 day predictions
 def oz():
-
     os.system("cls||clear")
     sum = 0
     print("\nForecast:\n")
@@ -254,11 +240,8 @@ def oz():
     print("Press enter to return to air quality information!")
     input()
 
-
-
 # Forecast informations about PM10 with 2 days old and 4 day predictions
 def pmten():
-
     os.system("cls||clear")
     sum = 0
     print("Forecast:\n")
@@ -286,11 +269,8 @@ def pmten():
     print("Press enter to return to air quality information!")
     input()
 
-
-
 # Forecast informations about PM2.5 with 2 days old and 4 day predictions
 def pmtwo():
-
     os.system("cls||clear")
     sum = 0
     print("Forecast:\n")
@@ -318,11 +298,8 @@ def pmtwo():
     print("Press enter to return to air quality information!")
     input()
 
-
-
 # Forecast informations about UV Index with 2 days old and 4 day predictions
 def uv():
-
     os.system("cls||clear")
     sum = 0
     print("Forecast:\n")
@@ -350,20 +327,13 @@ def uv():
     print("Press enter to return to air quality information!")
     input()
 
-
-
 # Start the program
 if __name__ == "__main__":
-
     os.system("cls || clear")
-
     print("""
     \t\t\t ________________________
     \t\t\t|Welcome to AirQualityPy!|
     """)
-
     data()
-
     while True:
-
         air()
