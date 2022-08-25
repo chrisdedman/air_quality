@@ -26,6 +26,8 @@ $ pip3 install geopy
    * [Christopher Dedman-Rollet](https://twitter.com/DedmanRollet)
 
 ## Version History
+* 3.0 
+  * Update the whole data structure
 * 2.0 
   * Update major bug, and improve the user interfaces
 * 1.0
